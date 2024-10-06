@@ -1,4 +1,5 @@
 import express from 'express'
+import rootRoutes from './src/routes/root.router.js';
 
 
 const app = express();
@@ -6,7 +7,7 @@ const app = express();
 
 
 app.use(express.json());
-
+app.use(rootRoutes);
 app.get(`/test`,(req,res) => {
    res.send("hello");
  }
