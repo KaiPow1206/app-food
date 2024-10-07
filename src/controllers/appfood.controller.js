@@ -102,7 +102,7 @@ const orderAPI = async (req, res) => {
          {
            model: model.orders,
            as: 'orders',
-           attributes: ['order_id', 'user_id', 'food_id', 'amount'],
+           attributes: ['amount'],
            include:[{
             model: model.food,
             as: 'food',
@@ -113,9 +113,23 @@ const orderAPI = async (req, res) => {
      });
      return res.status(200).json(data);
    } catch (error) {
-      console.log(error);
      return res.status(500).json({ message: "error" });
    }
+ }
+ const creatorderAPI = async (req,res) => {
+   try {
+      let { userID, foodID, amount } = req.body;
+  
+      let newOrder = await model.orders.create({
+        user_id: userID,
+        food_id: foodID,
+        amount: amount,
+      });
+  
+      return res.status(201).json({ message: "Order created successfully",newOrder});
+    } catch (error) {
+      return res.status(500).json({ message: "Error creating order" });
+    }
  }
  
 
@@ -126,5 +140,6 @@ export {
    likeUserApi,
    rateResAPI,
    rateUserAPI,
-   orderAPI
+   orderAPI,
+   creatorderAPI
 }
