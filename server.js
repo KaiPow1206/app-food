@@ -10,10 +10,8 @@ app.use(express.json());
 app.use(rootRoutes);
 app.get(`/test`,(req,res) => {
    res.send("hello");
- }
- );
+});
 
 app.listen(8080,() => {
    console.log("Server online at port 8080");
- }
- );
+});
