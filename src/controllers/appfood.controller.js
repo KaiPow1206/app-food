@@ -133,6 +133,21 @@ const orderAPI = async (req, res) => {
  }
  
 
+const creatRateAPI = async (req,res) => {
+  try {
+    let {userID,resID,amount} = req.body;
+    let newRate = await model.rate_res.create({
+      user_id:userID,
+      res_id:resID,
+      amount: amount,
+    })
+    return res.status(201).json({ message: "Rate created successfully",newRate});
+  } catch (error) {
+    return res.status(500).json({ message: "Error creating rate" });
+  }
+}
+
+
 
 
 export {
@@ -141,5 +156,6 @@ export {
    rateResAPI,
    rateUserAPI,
    orderAPI,
-   creatorderAPI
+   creatorderAPI,
+   creatRateAPI,
 }
