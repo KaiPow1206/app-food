@@ -10,6 +10,6 @@ appfoodRoutes.get("/order/:userorderID",orderAPI);
 appfoodRoutes.post("/createorder",creatorderAPI);
 appfoodRoutes.post("/createrate",creatRateAPI);
 appfoodRoutes.post("/createlike",creatLikeAPI);
-appfoodRoutes.delete('/unlike', deleteLikeAPI);
+appfoodRoutes.delete("/unlike", deleteLikeAPI);
 
 export default appfoodRoutes;
