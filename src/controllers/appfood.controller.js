@@ -176,7 +176,27 @@ const deleteLikeAPI = async (req, res) => {
   } catch (error) {
     return res.status(500).json({ message: "Error deleting like" });
   }
-};
+}
+
+
+const deleteRateAPI = async (req,res) => {
+  try {
+    let { userID, resID } = req.body;
+
+    let deletedLike = await model.rate_res.destroy({
+      where: {
+        user_id: userID,
+        res_id: resID,
+      },
+    });
+    if (deletedLike) {
+      return res.status(200).json({ message: "Unrate successfully" });
+    }
+    return res.status(400).json({ message: "Rate not found" });
+  } catch (error) {
+    return res.status(500).json({ message: "Error deleting rate" });
+  }
+}
 
 
 
@@ -189,5 +209,6 @@ export {
    creatorderAPI,
    creatRateAPI,
    creatLikeAPI,
-   deleteLikeAPI
+   deleteLikeAPI,
+   deleteRateAPI
 }

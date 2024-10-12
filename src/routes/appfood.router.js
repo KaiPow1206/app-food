@@ -1,5 +1,5 @@
 import express from 'express';
-import { likeResAPI,likeUserApi,rateResAPI,rateUserAPI,orderAPI,creatorderAPI, creatRateAPI, creatLikeAPI,deleteLikeAPI } from '../controllers/appfood.controller.js';
+import { likeResAPI,likeUserApi,rateResAPI,rateUserAPI,orderAPI,creatorderAPI, creatRateAPI, creatLikeAPI,deleteLikeAPI,deleteRateAPI } from '../controllers/appfood.controller.js';
 const appfoodRoutes =express.Router();
 
 appfoodRoutes.get("/likeres/:resID",likeResAPI);
@@ -11,5 +11,7 @@ appfoodRoutes.post("/createorder",creatorderAPI);
 appfoodRoutes.post("/createrate",creatRateAPI);
 appfoodRoutes.post("/createlike",creatLikeAPI);
 appfoodRoutes.delete("/unlike", deleteLikeAPI);
+appfoodRoutes.delete("/unrate", deleteRateAPI);
+
 
 export default appfoodRoutes;
