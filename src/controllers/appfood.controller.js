@@ -147,6 +147,36 @@ const creatRateAPI = async (req,res) => {
   }
 }
 
+const creatLikeAPI = async (req,res) => {
+  try {
+    let {userID,resID,amount} = req.body;
+    let newLike = await model.like_res.create({
+      user_id:userID,
+      res_id:resID,
+    })
+    return res.status(201).json({ message: "Like created successfully",newLike});
+  } catch (error) {
+    return res.status(500).json({ message: "Error creating like" });
+  }
+}
+const deleteLikeAPI = async (req, res) => {
+  try {
+    let { userID, resID } = req.body;
+
+    let deletedLike = await model.like_res.destroy({
+      where: {
+        user_id: userID,
+        res_id: resID,
+      },
+    });
+    if (deletedLike) {
+      return res.status(200).json({ message: "Unlike successfully" });
+    }
+    return res.status(400).json({ message: "Like not found" });
+  } catch (error) {
+    return res.status(500).json({ message: "Error deleting like" });
+  }
+};
 
 
 
@@ -158,4 +188,6 @@ export {
    orderAPI,
    creatorderAPI,
    creatRateAPI,
+   creatLikeAPI,
+   deleteLikeAPI
 }
